@@ -1,35 +1,32 @@
-import java.io.RandomAccessFile;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Ejercicio6 {
-
+    
     public static void main(String[] args) {
-
+        
         try {
+            
+            String comando = "ipconfig";
 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("=======================================");
-            System.out.println("        ¿Que asiento quiere?");
-            System.out.println("=======================================");
-            sc.nextLine();
-            RandomAccessFile reserva = new RandomAccessFile("Ejercicio6\\asientos.txt", "rw");
+            ProcessBuilder cmd = new ProcessBuilder("cmd" , "/c", comando );
+            Process proceso = cmd.start();
 
-            int asiento = Integer.parseInt(sc.nextLine());
-            if (asiento > 19) {
-                System.out.println("No existe ese asiento");
-            } else if (asiento < 0) {
-                System.out.println("No existe ese asiento");
-            } else if (reserva.readChar() == 'C') {
-                System.out.println("Ese asiento ya está ocupado");
-            } else {
-                reserva.seek(asiento);
-                reserva.write('C');
+            BufferedReader reader = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+            String linea;
+
+            while ((linea = reader.readLine()) !=null) {
+                if (linea.contains("IPv4")) {
+                    System.out.println(linea);
+                }
             }
-            reserva.close();
-            sc.close();
+
+            int exitCode = proceso.waitFor();
+            System.out.println("Comando terminado con código de salida: " + exitCode);
+
 
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 }
