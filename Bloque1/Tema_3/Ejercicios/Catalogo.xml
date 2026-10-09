@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogos [
+    <!ELEMENT catalogos (catalogo+)>
+    <!ELEMENT catalogo (name, videojuegos)>
+    <!ATTLIST catalogo tienda CDATA #REQUIRED>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT videojuegos (videojuego+)>
+    <!ELEMENT videojuego (nombre, developer, genero, salida)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT developer (#PCDATA)>
+    <!ELEMENT genero (#PCDATA)>
+    <!ELEMENT salida (#PCDATA)>
+]>
+
+<catalogos>
+    <catalogo tienda="Jaén">
+        <name>Game Center</name>
+        <videojuegos>
+            <videojuego>
+                <nombre>Minecraft</nombre>
+                <developer>Mojang Studios</developer>
+                <genero>Sandbox</genero>
+                <salida>2011</salida>
+            </videojuego>
+            <videojuego>
+                <nombre>The Legend of Zelda: Breath of the Wild</nombre>
+                <developer>Nintendo</developer>
+                <genero>Aventura</genero>
+                <salida>2017</salida>
+            </videojuego>
+        </videojuegos>
+    </catalogo>
+
+    <catalogo tienda="Málaga">
+        <name>Videojuegos Málaga</name>
+        <videojuegos>
+            <videojuego>
+                <nombre>Grand Theft Auto V</nombre>
+                <developer>Rockstar North</developer>
+                <genero>Acción y aventura</genero>
+                <salida>2013</salida>
+            </videojuego>
+            <videojuego>
+                <nombre>EA Sports FC 25</nombre>
+                <developer>EA Sports</developer>
+                <genero>Deportes</genero>
+                <salida>2024</salida>
+            </videojuego>
+        </videojuegos>
+    </catalogo>
+</catalogos>
