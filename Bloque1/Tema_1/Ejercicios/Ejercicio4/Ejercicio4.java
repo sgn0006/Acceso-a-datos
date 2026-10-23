@@ -1,67 +1,35 @@
-import java.util.Scanner;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 public class Ejercicio4 {
+
     public static void main(String[] args) {
 
+        int tamano = 4*1024;
+        byte[] buffer = new byte[tamano];
+
         try {
-            Scanner sc = new Scanner(System.in);
-            int app = 0;
-            String cerrar = "";
+            
+            BufferedInputStream entrada = new BufferedInputStream(new FileInputStream("imagen.png"));
+            BufferedOutputStream salida = new BufferedOutputStream(new FileOutputStream("imagen_copia.png"));
 
-            System.out.println("====================================");
-            System.out.println(" Buenas que app quieres usar:");
-            System.out.println("1.- Calculadora");
-            System.out.println("2.- Paint");
-            System.out.println("3.- Notas");
-            System.out.println("====================================");
-            app = Integer.parseInt(sc.nextLine());
-
-            switch (app) {
-                case 1:
-                    ProcessBuilder calculadora = new ProcessBuilder("calc");
-                    Process cal = calculadora.start();
-
-                    System.out.println("====================================");
-                    System.out.println("¿Quieres cerrar el programa?");
-                    System.out.println("====================================");
-                    cerrar = sc.nextLine();
-
-                    if (cerrar.equalsIgnoreCase("si")) {
-                        cal.destroyForcibly();
-                    }
-                    break;
-                case 2:
-                    ProcessBuilder notepad = new ProcessBuilder("notepad");
-                    Process not = notepad.start();
-
-                    System.out.println("====================================");
-                    System.out.println("¿Quieres cerrar el programa?");
-                    System.out.println("====================================");
-                    cerrar = sc.nextLine();
-
-                    if (cerrar.equalsIgnoreCase("si")) {
-                        not.destroyForcibly();
-                    }
-                    break;
-                case 3:
-                    ProcessBuilder paint = new ProcessBuilder("mspaint");
-                    Process pa = paint.start();
-
-                    System.out.println("====================================");
-                    System.out.println("¿Quieres cerrar el programa?");
-                    System.out.println("====================================");
-                    cerrar = sc.nextLine();
-
-                    if (cerrar.equalsIgnoreCase("si")) {
-                        pa.destroyForcibly();
-                    }
-                    break;
-                default:
-                    break;
+            int leidos;
+            int bloque = 1;
+            
+            while ((leidos = entrada.read(buffer)) != -1) {
+                salida.write(buffer, 0, leidos);
+                System.out.println("Fin de bloque " + bloque + ", se han leido " + leidos + " bytes.");
+                bloque++;
             }
 
+            System.out.println("Se han leido " + bloque + " bloques.");
+            entrada.close();
+            salida.close();
+
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
 }

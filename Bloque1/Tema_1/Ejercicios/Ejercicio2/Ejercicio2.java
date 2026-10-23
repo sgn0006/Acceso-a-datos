@@ -1,21 +1,31 @@
-public class Ejercicio2 {
+import java.io.FileReader;
+import java.io.FileWriter;
 
+public class Ejercicio2 {
+    
     public static void main(String[] args) {
 
+        String path = "Tema 1\\Ejercicios\\Ejercicio2\\image.jpg";
+        String pathEscritura = "Tema 1\\Ejercicios\\Ejercicio2\\image_copia.png";
+
         try {
+            FileReader lectura = new FileReader(path);
+            FileWriter escritura = new FileWriter(pathEscritura);
 
-            String url = "https://medac.es";
-            String rutaChrome = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-            String rutaEdge = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
+            int data;
+            int num = 0;
 
-            ProcessBuilder chrome = new ProcessBuilder(rutaChrome, url);
-            chrome.start();
-
-            ProcessBuilder edge = new ProcessBuilder(rutaEdge, url);
-            edge.start();
-
+            while ((data = lectura.read()) != -1) {
+                num++;
+                escritura.write(data);
+                //System.out.print(data);
+            }
+            System.out.println(num);
+            lectura.close();
+            escritura.close();
+            
         } catch (Exception e) {
-            // TODO: handle exception
-        }
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }    
     }
 }
