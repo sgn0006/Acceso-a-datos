@@ -7,7 +7,8 @@ public class Ejemplo1 {
 
         try {
 
-            StreamTokenizer streamTokenizer = new StreamTokenizer(new FileReader("Tema_2\\Ejemplos\\Ejemplo1\\datos.txt"));
+            StreamTokenizer streamTokenizer = new StreamTokenizer(new FileReader
+                ("C:\\Users\\USUARIO\\Desktop\\Medac\\2_anio\\Acceso-a-datos\\Bloque1\\Tema_2\\Ejemplos\\Ejemplo1\\datos.txt"));
             streamTokenizer.eolIsSignificant(true);
 
             int palabras = 0;
@@ -19,9 +20,9 @@ public class Ejemplo1 {
                 } else if (streamTokenizer.ttype == StreamTokenizer.TT_NUMBER) {
                     System.out.println("Número: " + streamTokenizer.nval); // token de tipo número
                     numeros ++;
-                } else if (streamTokenizer.ttype == StreamTokenizer.TT_EOL) {
-                    System.out.println("Salto de linea"); // fin de línea
-                }
+                } //else if (streamTokenizer.ttype == StreamTokenizer.TT_End Of Line) {
+                //     System.out.println("Salto de linea"); // fin de línea
+                // }
             }
             System.out.println("Hay " + palabras + " y " + numeros + " numeros");
         } catch (Exception e) {
