@@ -13,18 +13,21 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-@Entity 
-@Table (name = "CLIENTE")
+@Entity
+@Table(name = "CLIENTE")
 public class Cliente {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private int id;
 
-    @Column 
+    @Column
     private String nombre;
 
-    public Cliente(String nombre){
+    public Cliente() {
+    }
+
+    public Cliente(String nombre) {
         this.nombre = nombre;
     }
 
@@ -32,18 +35,14 @@ public class Cliente {
         return nombre;
     }
 
-
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-
-
-    @ManyToMany 
-    @JoinTable (name = "compra",//tabla intermedia
-        joinColumns = @JoinColumn (name = "id_cliente"),//FK
-        inverseJoinColumns = @JoinColumn (name="id_producto")//FK
+    @ManyToMany
+    @JoinTable(name = "compra", // tabla intermedia
+            joinColumns = @JoinColumn(name = "id_cliente"), // FK
+            inverseJoinColumns = @JoinColumn(name = "id_producto")// FK
     )
 
     private Set<Producto> productos = new HashSet<>();

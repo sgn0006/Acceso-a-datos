@@ -15,6 +15,10 @@ public class Categoria {
 
     private String nombre;
 
+    public Categoria() {
+
+    }
+
     public Categoria(String nombre) {
         this.nombre = nombre;
     }
@@ -31,11 +35,11 @@ public class Categoria {
 
 
 
-    public int GetId() {
+    public int getId() {
         return id;
     }
 
-    public void SetId(int id) {
+    public void setId(int id) {
         this.id = id;
 
     }

@@ -34,6 +34,7 @@ public class Producto {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.categoria = categoria;
     }
     
     // getters y setters

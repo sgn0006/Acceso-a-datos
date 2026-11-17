@@ -21,9 +21,9 @@ public class TiendaHibernateApplication {
         productos.save(new Producto("Teclado", 25.90, 40, perifericos));
         Producto raton = productos.save(new Producto("Ratón", 12.50, 60, perifericos));
         productos.save(new Producto("Monitor 24 pulgadas", 129.00, 15, monitores));
-        Producto alfombrilla = productos.save(new Producto("Alfombrilla", 5.00, 100, perifericos));
+        Producto alfombrilla = productos.save(new Producto("Alfombrilla García", 5.00, 100, perifericos));
 
-        clientes.save(new Cliente("Ana"));
+        clientes.save(new Cliente("Saúl"));
         clientes.save(new Cliente("Luis"));
 
         // ===== R - READ (consultar) =====
